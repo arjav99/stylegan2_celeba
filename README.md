@@ -2,7 +2,10 @@
 A complete implementation of a StyleGAN2 architecture built entirely from scratch using PyTorch. The model is trained on the CelebA dataset using a style-modulated generator with runtime weight demodulation, equalized learning rates, style mixing, and lazy R1/Path Length regularization.
 
 ## Generated Image
-<img width="1184" height="1185" alt="epoch_100" src="https://github.com/user-attachments/assets/2f6f7126-f3dc-45b0-bc9a-ba75f6711dc1" />
+<img width="1184" height="1185" alt="epoch_050" src="https://github.com/user-attachments/assets/56cedffb-cf9f-41b3-9557-0dd7cc91ff3e" />
+
+## Training GIF
+<img width="1184" height="1185" alt="training_progress" src="https://github.com/user-attachments/assets/69a522c0-39b1-46df-baed-64fd2b4786e2" />
 
 
 ## Project Structure
