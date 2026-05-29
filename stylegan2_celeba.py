@@ -10,7 +10,7 @@ import copy
 BATCH_SIZE = 16
 NUM_WORKERS = 2
 LR = 0.0002
-EPOCHS = 100
+EPOCHS = 50
 LAMBDA_R1 = 1
 LAMBDA_PL = 0.5
 MIXING_PROB = 0.9
@@ -18,7 +18,7 @@ R1_INTERVAL = 16
 PL_INTERVAL = 4 
 N_CRITIC = 1 # Rule of thumb: Set to 1 for modern StyleGAN architectures
 IMG_SIZE = 64
-SUB_SET_SIZE = 0.1
+SUB_SET_SIZE = 0.5
 LATENT_DIM = 256
 checkpoint_path = "checkpoint.pth"
 
@@ -717,8 +717,9 @@ def main():
               f"Total Steps: {global_step} | "
               f"Time: {total_time:.2f}s")
 
-        save_checkpoint(epoch + 1, global_step, discriminator, mapping_network, synthesis_network,mapping_ema, synthesis_ema, optim_discriminator, optim_mapping, optim_synthesis, checkpoint_path)
-        display_generated_images(mapping_ema.ema_model, synthesis_ema.ema_model, device, epoch + 1, fixed_latents=fixed_latents)
+        if (epoch + 1) % 2 == 0:
+            save_checkpoint(epoch + 1, global_step, discriminator, mapping_network, synthesis_network,mapping_ema, synthesis_ema, optim_discriminator, optim_mapping, optim_synthesis, checkpoint_path)
+            display_generated_images(mapping_ema.ema_model, synthesis_ema.ema_model, device, epoch + 1, fixed_latents=fixed_latents)
         
         # Explicitly empty CUDA cache after each epoch to avoid the autograd growth leak
         if torch.cuda.is_available():
